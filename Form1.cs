@@ -7,7 +7,7 @@ namespace StokTakipApp
 {
     public partial class Form1 : Form
     {
-        MySqlConnection con = new MySqlConnection("Server=localhost;Database=StokTakip;Uid=root;Pwd=;");
+        MySqlConnection con = new MySqlConnection("Server=172.20.10.3;Database=StokTakip;Uid=root;Pwd=karacabey;");
         MySqlDataAdapter da;
         DataTable dt;
 
