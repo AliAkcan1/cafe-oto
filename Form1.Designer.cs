@@ -54,6 +54,7 @@
             this.txtMiktar.Name = "txtMiktar";
             this.txtMiktar.PlaceholderText = "Miktar";
             this.txtMiktar.Size = new System.Drawing.Size(150, 23);
+            this.txtMiktar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMiktar_KeyPress);
             // 
             // txtFiyat
             // 
@@ -61,6 +62,7 @@
             this.txtFiyat.Name = "txtFiyat";
             this.txtFiyat.PlaceholderText = "Fiyat";
             this.txtFiyat.Size = new System.Drawing.Size(150, 23);
+            this.txtFiyat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFiyat_KeyPress);
             // 
             // btnEkle
             // 

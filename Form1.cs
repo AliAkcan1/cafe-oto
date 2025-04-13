@@ -3,9 +3,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
-SqlConnection baglanti = new SqlConnection("Server=.;Database=StokTakipDB;Trusted_Connection=True;");
-
-
 namespace StokTakipApp
 {
     public partial class Form1 : Form
@@ -76,6 +73,26 @@ namespace StokTakipApp
             txtMiktar.Text = dgvUrunler.CurrentRow.Cells[3].Value.ToString();
             txtFiyat.Text = dgvUrunler.CurrentRow.Cells[4].Value.ToString();
         }
-    }
-}
 
+        private void txtMiktar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtFiyat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == ',' && (sender as TextBox).Text.Contains(','))
+            {
+                e.Handled = true;
+            }
+        }
+    }
+} 
