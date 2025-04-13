@@ -1,14 +1,14 @@
 using System;
 using System.Data;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 
 namespace StokTakipApp
 {
     public partial class Form1 : Form
     {
-        SqlConnection con = new SqlConnection("Server=localhost;Database=StokTakip;Trusted_Connection=True;");
-        SqlDataAdapter da;
+        MySqlConnection con = new MySqlConnection("Server=localhost;Database=StokTakip;Uid=root;Pwd=;");
+        MySqlDataAdapter da;
         DataTable dt;
 
         public Form1()
@@ -25,7 +25,7 @@ namespace StokTakipApp
         {
             try
             {
-                da = new SqlDataAdapter("SELECT * FROM Urunler", con);
+                da = new MySqlDataAdapter("SELECT * FROM Urunler", con);
                 dt = new DataTable();
                 da.Fill(dt);
                 dgvUrunler.DataSource = dt;
@@ -40,7 +40,7 @@ namespace StokTakipApp
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("INSERT INTO Urunler (UrunAdi, Kategori, Miktar, Fiyat) VALUES (@adi, @kategori, @miktar, @fiyat)", con))
+                using (MySqlCommand cmd = new MySqlCommand("INSERT INTO Urunler (UrunAdi, Kategori, Miktar, Fiyat) VALUES (@adi, @kategori, @miktar, @fiyat)", con))
                 {
                     cmd.Parameters.AddWithValue("@adi", txtUrunAdi.Text);
                     cmd.Parameters.AddWithValue("@kategori", txtKategori.Text);
@@ -65,7 +65,7 @@ namespace StokTakipApp
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("UPDATE Urunler SET UrunAdi=@adi, Kategori=@kategori, Miktar=@miktar, Fiyat=@fiyat WHERE Id=@id", con))
+                using (MySqlCommand cmd = new MySqlCommand("UPDATE Urunler SET UrunAdi=@adi, Kategori=@kategori, Miktar=@miktar, Fiyat=@fiyat WHERE Id=@id", con))
                 {
                     cmd.Parameters.AddWithValue("@adi", txtUrunAdi.Text);
                     cmd.Parameters.AddWithValue("@kategori", txtKategori.Text);
@@ -91,7 +91,7 @@ namespace StokTakipApp
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("DELETE FROM Urunler WHERE Id=@id", con))
+                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM Urunler WHERE Id=@id", con))
                 {
                     cmd.Parameters.AddWithValue("@id", dgvUrunler.CurrentRow.Cells[0].Value);
 
